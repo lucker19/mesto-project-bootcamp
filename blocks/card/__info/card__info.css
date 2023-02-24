@@ -1,0 +1,8 @@
+.card__info{
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 21px 0 20px;
+    font-family: "Inter", Arial, sans-serif;
+}

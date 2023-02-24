@@ -1,0 +1,15 @@
+.profile__text-edit-button{
+   align-self: center;
+    background-color: #000; 
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    width: 24px;
+    height: 24px;
+    transition: all .5s ease;
+}
+
+.profile__text-edit-button:hover{
+    opacity: 0.5;
+}

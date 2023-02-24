@@ -1,0 +1,15 @@
+.card__like-button-inactive{
+    height: 19px;
+    width: 22px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    box-sizing: border-box;
+    margin: 0;
+    background: url(../../../images/like.svg) no-repeat;
+    transition: all .5s ease;
+}
+
+.card__like-button-inactive:hover{
+    opacity: 0.5;
+}

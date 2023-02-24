@@ -1,0 +1,9 @@
+.profile__text-edit{
+    display: flex;
+    align-items: center;
+    padding-top: 26px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    justify-content: center;
+}

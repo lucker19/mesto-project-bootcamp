@@ -1,0 +1,13 @@
+.popup__opened{
+    display: flex;
+    align-items: center;
+    font-family: "Inter", Arial, sans-serif;
+    background-color: rgba(0,0,0,.5);
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
