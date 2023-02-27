@@ -1,4 +1,4 @@
-.popup__opened{
+.popup{
     display: flex;
     align-items: center;
     font-family: "Inter", Arial, sans-serif;
@@ -9,5 +9,6 @@
     left: 0;
     height: 100%;
     width: 100%;
-    display: none;
+    visibility: hidden;
 }
+

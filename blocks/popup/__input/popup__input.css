@@ -9,5 +9,6 @@
     margin: 0 auto;
     padding-bottom: 13px;
     outline: none;
-    width: 358px;
+    width: 100%;
+    margin-bottom: 30px;
 }

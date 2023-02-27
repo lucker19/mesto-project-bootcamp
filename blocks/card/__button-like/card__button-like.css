@@ -1,4 +1,4 @@
-.card__like-button-inactive{
+.card__button-like{
     height: 19px;
     width: 22px;
     cursor: pointer;
@@ -10,6 +10,6 @@
     transition: all .5s ease;
 }
 
-.card__like-button-inactive:hover{
+.card__button-like:hover{
     opacity: 0.5;
 }

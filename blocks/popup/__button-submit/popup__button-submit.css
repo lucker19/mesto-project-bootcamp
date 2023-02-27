@@ -10,5 +10,12 @@
     line-height: 22px;
     text-align: center;
     padding: 14px 0;
-    margin: 45px 0 0;
+    margin: 16px 0 0;
+    transition: all .4s ease-in-out;
+    width: 100%;
 }
+
+.popup__button-submit:hover{
+    opacity: 0.5;
+}
+

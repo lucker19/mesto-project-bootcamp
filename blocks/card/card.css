@@ -4,6 +4,6 @@
     overflow: hidden;
     position: relative;
     border-radius: 10px;
-    max-width: 282px;
     justify-self: center;
+    width: 100%;
 }
