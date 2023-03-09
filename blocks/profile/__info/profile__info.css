@@ -1,18 +1,25 @@
 .profile__info{
-    display: flex;
-    justify-self: start;
+    
+    
     font-family: "Inter", Arial, sans-serif;
    
-    align-items: center;
-    flex-direction: row;
+    align-self: flex-start;
     
+    align-items: center;
+    box-sizing: border-box;
+    display: grid;
+    gap: 16px 18px;
+    grid-template-columns: minmax(min-content,max-content) minmax(min-content,max-content);
+    margin: 0 0 0 30px;
+    padding: 10px 0 0 0;
   
 }
 
 @media screen and (max-width: 767px){
   .profile__info {
     flex-direction: column;
-    margin: 0 auto;
+    margin: 22px auto 36px auto;
+    gap: 14px 10px;
      
 }
 }

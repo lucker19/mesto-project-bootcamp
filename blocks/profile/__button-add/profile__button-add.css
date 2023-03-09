@@ -7,6 +7,7 @@
     height: 50px;
     border: 2px solid #FFF;
     border-radius: 2px;
+    margin: 0 0 0 auto;
 }
 
 .profile__button-add:hover{

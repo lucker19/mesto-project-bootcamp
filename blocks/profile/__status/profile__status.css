@@ -1,5 +1,5 @@
 .profile__status{
-    margin-top: 16px;
+    margin-top: 0;
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
@@ -11,5 +11,7 @@
     font-size: 14px;
     line-height: 17px;
     margin-top: 14px;
+    text-align: center;
+    margin: 0;
     }
 }

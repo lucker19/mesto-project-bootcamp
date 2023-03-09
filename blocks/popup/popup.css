@@ -10,5 +10,6 @@
     height: 100%;
     width: 100%;
     visibility: hidden;
+    transition: visibility .6s, opacity .6s ease;
 }
 
