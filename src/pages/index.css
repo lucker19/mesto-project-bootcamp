@@ -34,3 +34,8 @@
 @import url(../blocks/profile/__avatar/-place/profile__avatar-place.css);
 @import url(../blocks/popup/__picture/popup__picture-container.css);
 @import url(../blocks/popup/__description/popup__description.css);
+@import url(../blocks/popup/__image/popup__image.css);
+@import url(../blocks/popup/__zoomed/popup__zoomed.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/popup/__button-submit/_disabled/popup__button-submit_disabled.css);
