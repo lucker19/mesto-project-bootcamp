@@ -1,13 +1,14 @@
-
+import { profileName,profileStatus, nameInput, descriptionInput,popupProfile } from "./constants";
+import { popupClose, } from "./modal";
 
 export const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}__error`);
   inputElement.classList.add("popup__error_visible");
   errorElement.textContent = errorMessage;
 };
 
 export const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}__error`);
   inputElement.classList.remove("popup__error_visible");
   errorElement.textContent = "";
 };
@@ -55,16 +56,16 @@ export const setEventListeners = (popupForm) => {
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
+  submitButtonSelector: '.popup__button-submit',
+  inactiveButtonClass: 'popup__button-submit_disabled',
+  inputErrorClass: 'popup__error',
   errorClass: 'popup__error_visible'
 }); 
 
 export const formSubmitHandler = function (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
-  profileStatus.textContent = descriptionInput.value;
+  profileStatus.textContent = descriptionInput.vue;al
   popupClose(popupProfile);
 };
 

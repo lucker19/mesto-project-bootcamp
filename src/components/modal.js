@@ -1,4 +1,4 @@
-import { popups } from "./constants";
+import { popups,nameInput,descriptionInput,profileName,profileStatus } from "./constants";
 
 
 
@@ -33,3 +33,4 @@ popups.forEach((popups) =>
     }
   })
 );
+

@@ -1,4 +1,5 @@
-import { initialCards, cardsArea, } from "./constants";
+import { initialCards, cardsArea,popupImageZoom,nameCardInput,linkCardInput,popupCards  } from "./constants";
+import { popupOpen,popupClose } from "./modal";
 
 export const addCards = function (name, link) {
   const contentCardTemplate = document.querySelector("#cards").content;
