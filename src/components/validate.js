@@ -1,27 +1,4 @@
-import {
-  cardsArea,
-  popupImageZoom,
-  popupProfile,
-  popupCards,
-  popupImageZoomCloseIcon,
-  popupCardsCloseIcon,
-  editProfileIcon,
-  addCardIcon,
-  profileName,
-  profileStatus,
-  popupProfileCloseIcon,
-  nameInput,
-  nameCardInput,
-  descriptionInput,
-  linkCardInput,
-} from "../pages/index";
-import {
-  addCards,
-  integrationCard,
-  formSubmitHandler,
-  integrationInitialCards,
-} from "../components/card";
-import { popupOpen, popupClose,popupEscClose } from "./modal";
+
 
 export const showInputError = (formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
@@ -45,8 +22,7 @@ export function enableValidation() {
   const forms = Array.from(document.querySelectorAll(".popup__form"));
   forms.forEach((formElement) => {
     setEventListeners(formElement);
-  });
-}
+}); }
 
 export const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
@@ -76,4 +52,19 @@ export const setEventListeners = (popupForm) => {
   });
 };
 
-enableValidation();
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}); 
+
+export const formSubmitHandler = function (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileStatus.textContent = descriptionInput.value;
+  popupClose(popupProfile);
+};
+

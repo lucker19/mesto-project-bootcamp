@@ -1,17 +1,7 @@
-import {
-  profileName,
-  profileStatus,
-  nameInput,
-  popups,
-  descriptionInput,
-} from "../pages/index";
-import { initialCards } from "../pages/index";
-import {
-  addCards,
-  integrationCard,
-  formSubmitHandler,
-  integrationInitialCards,
-} from "../components/card";
+import { popups } from "./constants";
+
+
+
 
 
 export const popupOpen = function (popupName) {
@@ -33,13 +23,13 @@ export function popupEscClose(evt) {
   }
 }
 
-popups.forEach((popup) =>
-  popup.addEventListener("mousedown", (evt) => {
+popups.forEach((popups) =>
+  popups.addEventListener("mousedown", (evt) => {
     if (
       evt.target.classList.contains("popup") ||
       evt.target.classList.contains("popup__button-close")
     ) {
-      popupClose(popup);
+      popupClose(popups);
     }
   })
 );

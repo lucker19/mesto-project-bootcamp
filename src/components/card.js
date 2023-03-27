@@ -1,17 +1,4 @@
-import { initialCards } from "../pages/index";
-import { popupOpen, popupClose } from "./modal";
-import {
-  cardsArea,
-  popupImageZoom,
-  popupProfile,
-  popupCards,
-  profileName,
-  profileStatus,
-  nameInput,
-  nameCardInput,
-  descriptionInput,
-  linkCardInput,
-} from "../pages/index";
+import { initialCards, cardsArea, } from "./constants";
 
 export const addCards = function (name, link) {
   const contentCardTemplate = document.querySelector("#cards").content;
@@ -25,7 +12,6 @@ export const addCards = function (name, link) {
   copyCardTemplate
     .querySelector(".card__button-like")
     .addEventListener("click", function (evt) {
-      console.log(123);
       evt.target.classList.toggle("card__button-like_active");
     });
 
@@ -62,9 +48,3 @@ export const integrationInitialCards = function () {
 
 integrationInitialCards();
 
-export const formSubmitHandler = function (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileStatus.textContent = descriptionInput.value;
-  popupClose(popupProfile);
-};
