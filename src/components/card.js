@@ -1,41 +1,38 @@
 import {
-  initialCards,
+
   cardsArea,
   picture,
-  nameCardInput,
-  linkCardInput,
-  popupCards,
+cardSubmit,
   imageDescription,
   profileName,
   linkAvatarInput,
   profileAvatar,
-  avatarImage,
-  buttonAvatarEdit,
+  popupCards,
   submitAvatarButton,
   popupImageZoom,
   popupProfile,
   profileStatus,
   nameInput,
   descriptionInput,
-  cardDeleteButton
+  nameCardInput,
+  linkCardInput,
+  profileSubmit
 } from "./constants";
 import { popupOpen, popupClose } from "./modal";
 
 import {
-  getCards,
+
   addNewCard,
   deleteCard,
   addLike,
   deleteLike,
   editAvatar,
-  editProfileInfo,
+
   editProfile
 } from "./api";
 
 const placeForm = document.getElementById("cards-popup");
-const popupSubmitButton = placeForm.querySelector(".popup__button-submit");
-const placeInput = document.querySelector(".popup__name");
-const linkInputNewCard = document.querySelector(".popup__status");
+
 
 export function createCard(card, openImagePopup) {
   const cardElement = document
@@ -73,27 +70,27 @@ export function openImagePopup(elementImage) {
 
 export function handleSubmitCard(evt) {
   evt.preventDefault();
-  renderLoading(true, document.getElementById("card_submit"));
+  renderLoading(true, cardSubmit);
   addNewCard({
-    name: `${document.getElementById("card_add-name").value}`,
-    link: `${document.getElementById("card_add-status").value}`,
+    name: nameCardInput.value,
+    link: linkCardInput.value,
   })
     .then((res) => {
       renderCard(res);
-      popupClose(document.getElementById("cards-popup"));
+      popupClose(popupCards);
       evt.target.reset();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
     })
     .finally(() => {
-      renderLoading(false, document.getElementById("card_submit"));
+      renderLoading(false, cardSubmit);
     });
 }
 
 export function handleSubmitProfile(evt) {
   evt.preventDefault();
-  renderLoading(true, document.getElementById("profile_submit"));
+  renderLoading(true, profileSubmit);
 
   const name = nameInput.value;
   const about = descriptionInput.value;
@@ -108,7 +105,7 @@ export function handleSubmitProfile(evt) {
           console.log(err); 
       })
       .finally(() => {
-          renderLoading(false, document.getElementById("profile_submit"));
+          renderLoading(false, profileSubmit);
 
       })
 
@@ -179,7 +176,7 @@ export function submitAvatar(evt) {
   renderLoading(true, submitAvatarButton);
   editAvatar(linkAvatarInput.value)
     .then((res) => {
-      document.getElementById("avatar").link = res.avatarImage;
+      profileAvatar.link = res.avatarImage;
       popupClose(popupEditAvatar);
     })
     .catch((err) => {

@@ -83,4 +83,10 @@ export const initialCards = [
 
   export const cardDeleteButton = document.querySelector("card__delete")
 
+  export const profileSubmit = document.getElementById("profile_submit")
+
+  export const cardSubmit = document.getElementById("profile_submit")
+
+
+
   

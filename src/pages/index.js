@@ -1,19 +1,17 @@
 import "./index.css";
 import "../index.html";
 import {
-  createCard,
+
   renderLoading,
   renderCard,
-  openImagePopup,
-  submitAvatar,
+
   handleSubmitCard,
   handleSubmitProfile
 } from "../components/card";
 
 import { popupOpen, popupClose, formSubmitHandler } from "../components/modal";
 import {
-  showInputError,
-  hideInputError,
+
   enableValidation,
   settings
 } from "../components/validate";
@@ -21,40 +19,30 @@ import {
 import {
   editProfileIcon,
   addCardIcon,
-  popupProfileCloseIcon,
-  popupCardsCloseIcon,
-  popupImageZoomCloseIcon,
+
   popupProfile,
   popupCards,
-  popupImageZoom,
-  popupAvatar,
-  popupAvatarEdit,
-  inputAvatar,
-  profile__avatar,
+
   buttonAvatarEdit,
   popupEditAvatar,
   popupFormAvatar,
   submitPopupButton,
-  linkInputAvatar,
+
   profileName,
   profileStatus,
-  avatarImage,
+
   nameInput,
   descriptionInput,
-  submitAvatarButton,
-  profileAvatar,
+
   linkAvatarInput
 } from "../components/constants";
 
 import {
   getUser,
   getCards,
-  editProfileInfo,
-  addNewCard,
+
   editAvatar,
-  deleteCard,
-  addLike,
-  deleteLike,
+
 } from "../components/api";
 
 editProfileIcon.addEventListener("click", () => popupOpen(popupProfile));
