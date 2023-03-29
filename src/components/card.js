@@ -16,7 +16,8 @@ import {
   popupProfile,
   profileStatus,
   nameInput,
-  descriptionInput
+  descriptionInput,
+  cardDeleteButton
 } from "./constants";
 import { popupOpen, popupClose } from "./modal";
 
@@ -94,16 +95,14 @@ export function handleSubmitProfile(evt) {
   evt.preventDefault();
   renderLoading(true, document.getElementById("profile_submit"));
 
-  const name = profileName.value;
-  const about = profileStatus.value;
+  const name = nameInput.value;
+  const about = descriptionInput.value;
 
   editProfile(name, about)
       .then(res => {
-        nameInput.textContent = res.name;
-        descriptionInput.textContent = res.about;
+        profileName.textContent = res.name;
+        profileStatus.textContent = res.about;
           popupClose(popupProfile);
-          console.log(res.name);
-          console.log(res.about);
       })
       .catch((err) => {
           console.log(err); 
@@ -138,7 +137,6 @@ function deleteCardUser(item, trash) {
   }
 }
 
- 
 
 
 function giveLike(evt) {

@@ -1,3 +1,4 @@
+import { data } from "autoprefixer";
 
 
 const config = {
@@ -30,21 +31,19 @@ export function getCards() {
 }
 
 export function editProfile(name, about) {
-    return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/users/me `, {
-      method: 'PATCH',
+    return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/users/me/`, {
+      method: "PATCH",
       headers: {
         authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
         "Content-Type": "application/json",
-    },
+      },
       body: JSON.stringify({
         name: name,
-        about: about
+        about: about,
+        
       }),
-    }).then((res) => checkResponse(res))
-    
-  
+    }).then((res) => checkResponse(res));
   }
-
 export function addNewCard(data) {
   return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/cards`, {
     method: "POST",

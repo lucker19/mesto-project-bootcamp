@@ -81,6 +81,6 @@ export const initialCards = [
 
   export const avatarImage = document.querySelector(".profile__avatar");
 
-  export const cardSection = document.getElementById("cards");
+  export const cardDeleteButton = document.querySelector("card__delete")
 
   
