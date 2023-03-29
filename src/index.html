@@ -13,16 +13,17 @@
     <main>
       <section class="profile">
         <div class="profile__avatar-place">
-          <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar" />
+          <img src="#" alt="" class="profile__avatar" id="avatar">
+          <button class="profile__avatar-button"></button>
         </div>
         <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <h1 class="profile__name" id="profile_name"></h1>
           <button type="button" class="profile__edit-button"></button>
-          <p class="profile__status">Исследователь океана</p>
+          
+          <p class="profile__status" id="profile_status"></p>
         </div>
-        
-        <button type="button" class="profile__button-add">
-        </button>
+
+        <button type="button" class="profile__button-add"></button>
       </section>
 
       <section class="pictures"></section>
@@ -32,11 +33,31 @@
       <p class="footer__copyright">© 2023 Mesto Russia</p>
     </footer>
 
+
+    <div class="popup popup__avatar">
+      <div class="popup__container">
+        <button class="popup__button-close"></button>
+        <h3 class="popup__heading">Обновить аватар</h3>
+        <form name="avatar_form" id="avatar_form" class="popup__form" novalidate action="#">
+          <input
+            type="url"
+            class="popup__input popup__status"
+            placeholder="Ссылка на картинку"
+            name="avatar"
+            required
+            id="status"
+          />
+          <span class="popup__error status__error"></span>
+          <button type="submit" class="popup__button-submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <div id="profile-popup" class="popup">
       <div class="popup__container">
         <button class="popup__button-close"></button>
         <h3 class="popup__heading">Редактировать профиль</h3>
-        <form action="http" class="popup__form" name="edit">
+        <form action="http" class="popup__form" name="edit" id="popup_profile-form">
           <input
             type="text"
             name="name"
@@ -59,7 +80,7 @@
             id="status"
           />
           <span class="popup__error status__error"></span>
-          <button type="submit" class="popup__button-submit">Сохранить</button>
+          <button type="submit" class="popup__button-submit" id="profile_submit">Сохранить</button>
         </form>
       </div>
     </div>
@@ -72,36 +93,34 @@
           aria-label="Закрыть форму"
         ></button>
         <h3 class="popup__heading">Новое место</h3>
-        <form class="popup__form" name="mesto">
-          
-            <input
-              type="text"
-              class="popup__input popup__name"
-              name="mesto-name"
-              required
-              placeholder="Название"
-              minlength="2"
-              maxlength="30"
-              id="name"
-            />
-            <span class="popup__error name__error"></span>
-          
-          
-            <input
-              type="url"
-              class="popup__input popup__status"
-              name="link-image"
-              required
-              placeholder="Ссылка на картинку"
-              id="status"
-            />
-            <span class="popup__error status__error"></span>
-          
+        <form class="popup__form" name="mesto" id="card_form">
+          <input
+            type="text"
+            class="popup__input popup__name"
+            name="mesto-name"
+            required
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            id="card_add-name"
+          />
+          <span class="popup__error card_add-name__error"></span>
+
+          <input
+            type="url"
+            class="popup__input popup__status"
+            name="link-image"
+            required
+            placeholder="Ссылка на картинку"
+            id="card_add-status"
+          />
+          <span class="popup__error card_add-status__error"></span>
 
           <button
             type="submit"
             class="popup__button-submit"
             aria-label="Создать"
+            id="card_submit"
           >
             Создать
           </button>
@@ -125,7 +144,7 @@
       <div class="card">
         <button
           type="button"
-          class="card__delete"
+          class="card__delete card__delete_disable"
           aria-label="Удалить"
         ></button>
         <img src="#" alt="изображение" class="card__photo" />
@@ -133,10 +152,10 @@
           <h3 class="card__name"></h3>
           <div class="card__like">
             <button type="button" class="card__button-like"></button>
+            <span class="card__like-counter"></span>
           </div>
         </div>
       </div>
     </template>
-
   </body>
 </html>

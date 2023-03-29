@@ -1,22 +1,20 @@
-import { popups,nameInput,descriptionInput,profileName,profileStatus } from "./constants";
+import { popups,profileName,profileStatus,nameInput,descriptionInput, popupProfile,  } from "./constants";
 
 
 
 
 
-export const popupOpen = function (popupName) {
-  popupName.classList.add("popup_opened");
-  nameInput.value = profileName.textContent;
-  descriptionInput.value = profileStatus.textContent;
-  document.addEventListener("keydown", popupEscClose);
+export const popupOpen = function (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener("keydown", closePopupEsc);
 };
 
-export const popupClose = function (popupName) {
-  popupName.classList.remove("popup_opened");
-  document.removeEventListener("keydown", popupEscClose);
+export const popupClose = function (popup) {
+  popup.classList.remove('popup_opened');;
+  document.removeEventListener("keydown", closePopupEsc);
 };
 
-export function popupEscClose(evt) {
+export function closePopupEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
     popupClose(openedPopup);
@@ -34,3 +32,9 @@ popups.forEach((popups) =>
   })
 );
 
+export const formSubmitHandler = function (evt) {
+  evt.preventDefault();
+  profileName.textContent = nameInput.value;
+  profileStatus.textContent = descriptionInput.value;
+  popupClose(popupProfile);
+};

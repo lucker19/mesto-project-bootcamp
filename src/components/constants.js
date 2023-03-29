@@ -62,4 +62,25 @@ export const initialCards = [
   export const cardsArea = document.querySelector(".pictures");
   
   export const popups = document.querySelectorAll(".popup");
+
+  export const imageDescription = popupImageZoom.querySelector(".popup__description")
+  export const picture = popupImageZoom.querySelector(".popup__image")
+
+    export const submitAvatarButton = document.querySelector(".popup__button-submit")
+
+  export const profileAvatar = document.querySelector("profile__avatar")
+  export const buttonAvatarEdit = document.querySelector(".profile__avatar-button");
+  export const popupEditAvatar = document.querySelector(".popup__avatar");
+  export const popupFormAvatar = document.getElementById("avatar_form");
+  export const submitPopupButton = popupEditAvatar.querySelector(
+    ".popup__button-submit"
+  );
+  export const linkAvatarInput = document.querySelector(
+    ".popup__status"
+  );
+
+  export const avatarImage = document.querySelector(".profile__avatar");
+
+  export const cardSection = document.getElementById("cards");
+
   
