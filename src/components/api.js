@@ -1,4 +1,4 @@
-import { data } from "autoprefixer";
+
 
 
 const config = {
@@ -18,9 +18,7 @@ const checkResponse = (res) => {
 
 export function getUser() {
   return fetch(`${config.baseUrl}/users/me`, {
-    headers: {
-      authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-    },
+    headers: config.headers,
   }).then((res) => checkResponse(res));
 }
 
@@ -31,12 +29,9 @@ export function getCards() {
 }
 
 export function editProfile(name, about) {
-    return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/users/me/`, {
+    return fetch(`${config.baseUrl}/users/me/`, {
       method: "PATCH",
-      headers: {
-        authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-        "Content-Type": "application/json",
-      },
+      headers: config.headers,
       body: JSON.stringify({
         name: name,
         about: about,
@@ -45,12 +40,9 @@ export function editProfile(name, about) {
     }).then((res) => checkResponse(res));
   }
 export function addNewCard(data) {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/cards`, {
+  return fetch(`${config.baseUrl}/cards`, {
     method: "POST",
-    headers: {
-        authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-        "Content-Type": "application/json",
-    },
+    headers: config.headers,
     body: JSON.stringify({
       name: data.name,
       link: data.link,
@@ -59,44 +51,36 @@ export function addNewCard(data) {
 }
 
 export function editAvatar(avatar) {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/users/me/avatar`, {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: "PATCH",
-    headers: {
-        authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-        "Content-Type": "application/json",
-    },
+    headers: config.headers,
     body: JSON.stringify({
       avatar: avatar,
     }),
   }).then((res) => checkResponse(res));
 }
 
-export function deleteCard(id) {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/cards/${id}`, {
-    method: "DELETE",
-    headers: {
-        authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-        "Content-Type": "application/json",
-    },
-  }).then((res) => checkResponse(res));
+export function deleteCard(id){
+  return fetch (`${config.baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: config.headers,
+
+  })
+  .then((res) => checkResponse(res));    
 }
 
 export function addLike(id) {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/cards/${id}/likes/`, {
+  return fetch(`${config.baseUrl}/cards/${id}/likes/`, {
     method: "PUT",
-    headers: {
-      authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-    },
+    headers: config.headers,
     body: JSON.stringify({}),
   }).then((res) => checkResponse(res));
 }
 
 export function deleteLike(id) {
-  return fetch(`https://nomoreparties.co/v1/wbf-cohort-6/cards/${id}/likes/`, {
+  return fetch(`${config.baseUrl}/cards/${id}/likes/`, {
     method: "DELETE",
-    headers: {
-      authorization: "a1ab9255-6a5f-4b82-ab74-b82abc16c4a1",
-    },
+    headers: config.headers,
     body: JSON.stringify({}),
   }).then((res) => checkResponse(res));
 }

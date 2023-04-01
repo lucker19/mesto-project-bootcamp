@@ -1,16 +1,19 @@
-import { popups,profileName,profileStatus,nameInput,descriptionInput, popupProfile,  } from "./constants";
-
-
-
-
+import {
+  popups,
+  profileName,
+  profileStatus,
+  nameInput,
+  descriptionInput,
+  popupProfile,
+} from "./constants";
 
 export const popupOpen = function (popup) {
-  popup.classList.add('popup_opened');
+  popup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
 };
 
 export const popupClose = function (popup) {
-  popup.classList.remove('popup_opened');;
+  popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupEsc);
 };
 

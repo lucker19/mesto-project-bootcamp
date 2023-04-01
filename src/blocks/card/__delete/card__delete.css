@@ -9,9 +9,10 @@
     border: none;
     background: transparent url('../../../images/delete.svg') no-repeat;
     cursor: pointer;
+    transition: all .5s ease;
 }
       
-.cards__delete:hover {
-    opacity: 0.5;
+.card__delete:hover {
+    opacity: 0.7;
     
 }

@@ -1,8 +1,7 @@
 import {
-
   cardsArea,
   picture,
-cardSubmit,
+  cardSubmit,
   imageDescription,
   profileName,
   linkAvatarInput,
@@ -16,23 +15,23 @@ cardSubmit,
   descriptionInput,
   nameCardInput,
   linkCardInput,
-  profileSubmit
+  profileSubmit,
+  cardForm,
+  cardItem,
+
 } from "./constants";
 import { popupOpen, popupClose } from "./modal";
 
 import {
-
   addNewCard,
   deleteCard,
   addLike,
   deleteLike,
   editAvatar,
-
-  editProfile
+  editProfile,
 } from "./api";
 
 const placeForm = document.getElementById("cards-popup");
-
 
 export function createCard(card, openImagePopup) {
   const cardElement = document
@@ -53,6 +52,7 @@ export function createCard(card, openImagePopup) {
   card.likes.forEach((like) => checkLike(like._id, likeElement));
   elementImage.addEventListener("click", () => openImagePopup(elementImage));
   deleteCardUser(card, elementTrash);
+  deleteCardServer(cardElement, elementTrash)
   return cardElement;
 }
 
@@ -78,7 +78,7 @@ export function handleSubmitCard(evt) {
     .then((res) => {
       renderCard(res);
       popupClose(popupCards);
-      evt.target.reset();
+      cardForm.reset();
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -96,22 +96,18 @@ export function handleSubmitProfile(evt) {
   const about = descriptionInput.value;
 
   editProfile(name, about)
-      .then(res => {
-        profileName.textContent = res.name;
-        profileStatus.textContent = res.about;
-          popupClose(popupProfile);
-      })
-      .catch((err) => {
-          console.log(err); 
-      })
-      .finally(() => {
-          renderLoading(false, profileSubmit);
-
-      })
-
+    .then((res) => {
+      profileName.textContent = res.name;
+      profileStatus.textContent = res.about;
+      popupClose(popupProfile);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, profileSubmit);
+    });
 }
-
-
 
 export function renderLoading(
   condition,
@@ -131,10 +127,21 @@ function deleteCardUser(item, trash) {
     trash.classList.remove("card__delete_disable");
   } else {
     trash.classList.remove("card__delete");
+    
   }
 }
 
-
+function deleteCardServer(cardElement, trash) {
+  trash.addEventListener('click', () => {
+    deleteCard(cardElement.id)
+    .then(() => {
+      cardElement.closest('.card').remove();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+  });
+}
 
 function giveLike(evt) {
   const cardEl = evt.target.closest(".card");

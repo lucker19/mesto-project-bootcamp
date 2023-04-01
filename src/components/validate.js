@@ -10,7 +10,7 @@ export const settings = {
 const showInputError = (popupForm, formInput, errorMessage, settings) => {
   const formError = popupForm.querySelector(`.${formInput.id}__error`);
   formError.textContent = errorMessage;
-  
+
   formError.classList.add(settings.errorClass);
   formInput.classList.add(settings.inputErrorClass);
 };
@@ -76,4 +76,3 @@ const setEventListeners = (popupForm, settings) => {
     });
   });
 };
-

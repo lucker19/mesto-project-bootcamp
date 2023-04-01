@@ -1,49 +1,34 @@
 import "./index.css";
 import "../index.html";
 import {
-
   renderLoading,
   renderCard,
-
   handleSubmitCard,
-  handleSubmitProfile
+  handleSubmitProfile,
+  deleteCardServer
 } from "../components/card";
 
 import { popupOpen, popupClose, formSubmitHandler } from "../components/modal";
-import {
-
-  enableValidation,
-  settings
-} from "../components/validate";
+import { enableValidation, settings } from "../components/validate";
 
 import {
   editProfileIcon,
   addCardIcon,
-
   popupProfile,
   popupCards,
-
   buttonAvatarEdit,
   popupEditAvatar,
   popupFormAvatar,
   submitPopupButton,
-
   profileName,
   profileStatus,
-
   nameInput,
   descriptionInput,
-
-  linkAvatarInput
+  linkAvatarInput,
+  cardDeleteButton
 } from "../components/constants";
 
-import {
-  getUser,
-  getCards,
-
-  editAvatar,
-
-} from "../components/api";
+import { getUser, getCards, editAvatar, deleteCard } from "../components/api";
 
 editProfileIcon.addEventListener("click", () => popupOpen(popupProfile));
 
@@ -53,30 +38,39 @@ popupProfile.addEventListener("submit", formSubmitHandler);
 
 buttonAvatarEdit.addEventListener("click", () => popupOpen(popupEditAvatar));
 
-document.getElementById("card_form").addEventListener("click", handleSubmitCard)
+document
+  .getElementById("card_submit")
+  .addEventListener("click", handleSubmitCard);
 
-document.getElementById("popup_profile-form").addEventListener('submit', handleSubmitProfile);
+document
+  .getElementById("popup_profile-form")
+  .addEventListener("submit", handleSubmitProfile);
+  
 
-window.onload = function(){
-    popupFormAvatar.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-      renderLoading(true, submitPopupButton);
-      editAvatar(linkAvatarInput.value)
-        .then((res) => {
-          document.getElementById("avatar").src = res.avatar;
-          evt.target.reset();
-          popupClose(popupEditAvatar);
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        })
-        .finally(() => {
-          renderLoading(false, submitPopupButton);
-        });
-    });
-    
-  };
 
+  
+  
+  
+  
+
+window.onload = function () {
+  popupFormAvatar.addEventListener("submit", function (evt) {
+    evt.preventDefault();
+    renderLoading(true, submitPopupButton);
+    editAvatar(linkAvatarInput.value)
+      .then((res) => {
+        document.getElementById("avatar").src = res.avatar;
+        evt.target.reset();
+        popupClose(popupEditAvatar);
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        renderLoading(false, submitPopupButton);
+      });
+  });
+};
 
 Promise.all([getUser(), getCards()])
   .then(([userData, cardsData]) => {
@@ -92,5 +86,8 @@ Promise.all([getUser(), getCards()])
     console.log(err);
   });
 
-
 enableValidation(settings);
+
+
+
+
