@@ -95,3 +95,6 @@ export const cardForm = document.getElementById("card_form")
 
 export const cardItem = document.getElementsByClassName(".card")
 
+export const profileForm = document.getElementById("popup_profile-form")
+
+export const avatar = document.getElementById("avatar")

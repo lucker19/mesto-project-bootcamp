@@ -7,12 +7,12 @@ import {
   popupProfile,
 } from "./constants";
 
-export const popupOpen = function (popup) {
+export const openPopup = function (popup) {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", closePopupEsc);
 };
 
-export const popupClose = function (popup) {
+export const closePopup = function (popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupEsc);
 };
@@ -20,7 +20,7 @@ export const popupClose = function (popup) {
 export function closePopupEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
-    popupClose(openedPopup);
+    closePopup(openedPopup);
   }
 }
 
@@ -30,14 +30,8 @@ popups.forEach((popups) =>
       evt.target.classList.contains("popup") ||
       evt.target.classList.contains("popup__button-close")
     ) {
-      popupClose(popups);
+      closePopup(popups);
     }
   })
 );
 
-export const formSubmitHandler = function (evt) {
-  evt.preventDefault();
-  profileName.textContent = nameInput.value;
-  profileStatus.textContent = descriptionInput.value;
-  popupClose(popupProfile);
-};

@@ -20,7 +20,9 @@ import {
   cardItem,
 
 } from "./constants";
-import { popupOpen, popupClose } from "./modal";
+import { openPopup, closePopup } from "./modal";
+
+import { renderLoading } from "./utils";
 
 import {
   addNewCard,
@@ -48,7 +50,7 @@ export function createCard(card, openImagePopup) {
   cardElement.querySelector(".card__like-counter").textContent =
     card.likes.length;
   elementTrash.addEventListener("click", deleteCard);
-  likeElement.addEventListener("click", giveLike);
+  likeElement.addEventListener("click", handleLike);
   card.likes.forEach((like) => checkLike(like._id, likeElement));
   elementImage.addEventListener("click", () => openImagePopup(elementImage));
   deleteCardUser(card, elementTrash);
@@ -65,7 +67,7 @@ export function openImagePopup(elementImage) {
   picture.src = elementImage.src;
   picture.alt = elementImage.alt;
   imageDescription.textContent = elementImage.alt;
-  popupOpen(popupImageZoom);
+  openPopup(popupImageZoom);
 }
 
 export function handleSubmitCard(evt) {
@@ -77,7 +79,7 @@ export function handleSubmitCard(evt) {
   })
     .then((res) => {
       renderCard(res);
-      popupClose(popupCards);
+      closePopup(popupCards);
       cardForm.reset();
     })
     .catch((err) => {
@@ -88,39 +90,8 @@ export function handleSubmitCard(evt) {
     });
 }
 
-export function handleSubmitProfile(evt) {
-  evt.preventDefault();
-  renderLoading(true, profileSubmit);
 
-  const name = nameInput.value;
-  const about = descriptionInput.value;
 
-  editProfile(name, about)
-    .then((res) => {
-      profileName.textContent = res.name;
-      profileStatus.textContent = res.about;
-      popupClose(popupProfile);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      renderLoading(false, profileSubmit);
-    });
-}
-
-export function renderLoading(
-  condition,
-  button,
-  buttonText = "Сохранить",
-  loadingText = "Сохранение..."
-) {
-  if (condition) {
-    button.textContent = loadingText;
-  } else {
-    button.textContent = buttonText;
-  }
-}
 
 function deleteCardUser(item, trash) {
   if (item.owner._id === profileName.id) {
@@ -143,7 +114,7 @@ function deleteCardServer(cardElement, trash) {
   });
 }
 
-function giveLike(evt) {
+function handleLike(evt) {
   const cardEl = evt.target.closest(".card");
   const cardLikeCount = cardEl.querySelector(".card__like-counter");
   if (evt.target.classList.contains("card__button-like_active")) {
@@ -178,16 +149,4 @@ function checkLikesAmount(id, numbers, counter, cardId) {
   }
 }
 
-export function submitAvatar(evt) {
-  evt.preventDefault();
-  renderLoading(true, submitAvatarButton);
-  editAvatar(linkAvatarInput.value)
-    .then((res) => {
-      profileAvatar.link = res.avatarImage;
-      popupClose(popupEditAvatar);
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    })
-    .finally(() => renderLoading(false, submitAvatarButton));
-}
+

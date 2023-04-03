@@ -1,14 +1,9 @@
 import "./index.css";
 import "../index.html";
-import {
-  renderLoading,
-  renderCard,
-  handleSubmitCard,
-  handleSubmitProfile,
-  deleteCardServer
-} from "../components/card";
+import { renderCard, handleSubmitCard } from "../components/card";
+import { renderLoading } from "../components/utils";
 
-import { popupOpen, popupClose, formSubmitHandler } from "../components/modal";
+import { openPopup, closePopup } from "../components/modal";
 import { enableValidation, settings } from "../components/validate";
 
 import {
@@ -25,33 +20,27 @@ import {
   nameInput,
   descriptionInput,
   linkAvatarInput,
-  cardDeleteButton
+  cardForm,
+  profileForm,
+  avatar,
+  profileSubmit,
 } from "../components/constants";
 
-import { getUser, getCards, editAvatar, deleteCard } from "../components/api";
+import { getUser, getCards, editAvatar, editProfile } from "../components/api";
 
-editProfileIcon.addEventListener("click", () => popupOpen(popupProfile));
+editProfileIcon.addEventListener("click", function () {
+  openPopup(popupProfile);
+  nameInput.value = profileName.textContent;
+  descriptionInput.value = profileStatus.textContent;
+});
 
-addCardIcon.addEventListener("click", () => popupOpen(popupCards));
+addCardIcon.addEventListener("click", () => openPopup(popupCards));
 
-popupProfile.addEventListener("submit", formSubmitHandler);
+buttonAvatarEdit.addEventListener("click", () => openPopup(popupEditAvatar));
 
-buttonAvatarEdit.addEventListener("click", () => popupOpen(popupEditAvatar));
+cardForm.addEventListener("submit", handleSubmitCard);
 
-document
-  .getElementById("card_submit")
-  .addEventListener("click", handleSubmitCard);
-
-document
-  .getElementById("popup_profile-form")
-  .addEventListener("submit", handleSubmitProfile);
-  
-
-
-  
-  
-  
-  
+profileForm.addEventListener("submit", handleSubmitProfile);
 
 window.onload = function () {
   popupFormAvatar.addEventListener("submit", function (evt) {
@@ -59,9 +48,9 @@ window.onload = function () {
     renderLoading(true, submitPopupButton);
     editAvatar(linkAvatarInput.value)
       .then((res) => {
-        document.getElementById("avatar").src = res.avatar;
+        avatar.src = res.avatar;
         evt.target.reset();
-        popupClose(popupEditAvatar);
+        closePopup(popupEditAvatar);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -72,12 +61,47 @@ window.onload = function () {
   });
 };
 
+export function handleSubmitProfile(evt) {
+  evt.preventDefault();
+  renderLoading(true, profileSubmit);
+
+  const name = nameInput.value;
+  const about = descriptionInput.value;
+
+  editProfile(name, about)
+    .then((res) => {
+      profileName.textContent = res.name;
+      profileStatus.textContent = res.about;
+      closePopup(popupProfile);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      renderLoading(false, profileSubmit);
+    });
+}
+
+export function submitAvatar(evt) {
+  evt.preventDefault();
+  renderLoading(true, submitAvatarButton);
+  editAvatar(linkAvatarInput.value)
+    .then((res) => {
+      profileAvatar.link = res.avatarImage;
+      closePopup(popupEditAvatar);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => renderLoading(false, submitAvatarButton));
+}
+
 Promise.all([getUser(), getCards()])
   .then(([userData, cardsData]) => {
     profileName.id = userData._id;
     profileName.textContent = userData.name;
     profileStatus.textContent = userData.about;
-    document.getElementById("avatar").src = userData.avatar;
+    avatar.src = userData.avatar;
     nameInput.value = userData.name;
     descriptionInput.value = userData.about;
     cardsData.reverse().forEach(renderCard);
@@ -87,7 +111,3 @@ Promise.all([getUser(), getCards()])
   });
 
 enableValidation(settings);
-
-
-
-
